@@ -5,7 +5,7 @@ Before start, install manually `NodeJS` and `MongoDB`<br />
 In config files change database connection link and baseURL of project.<br />
 Also you can setup frequency of making screenshots.
 
-To start dev locally:<br />
+To start dev env locally:<br />
 `npm run web:install`<br />
 `npm run dev`<br />
 
