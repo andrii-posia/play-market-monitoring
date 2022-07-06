@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {useHttp} from "../../hooks/http.hook";
 
 export const DashboardPage = () => {
-    const {loading, request} = useHttp();
+    const {request} = useHttp();
     const [apps, setApps] = useState([]);
 
     const getApps = useCallback(async () => {

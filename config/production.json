@@ -1,5 +1,6 @@
 {
   "port": 3333,
   "mongoUri": "mongodb://127.0.0.1:27017/play-market-monitoring",
-  "screenShotTimer": "*/1 * * * *"
+  "screenShotTimer": "*/1 * * * *",
+  "baseUrl": "http://localhost:3333"
 }

@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const {check, validationResult} = require('express-validator');
 const App = require('../models/App');
+const config = require('config');
 const router = Router();
 
 router.post(
@@ -30,7 +31,8 @@ router.post(
 
 router.get('/', async (req, resp) => {
     try {
-        const Apps = await App.find({}).sort({start_time: -1});
+        const Apps = await App.find({})
+            .sort({start_time: -1});
 
         resp.status(200).json({data: Apps})
     } catch (e) {
@@ -40,9 +42,19 @@ router.get('/', async (req, resp) => {
 
 router.get('/:appId', async (req, resp) => {
     const appId = req.params.appId;
+    const limit = 5;
 
     try {
-        const app = await App.findById(appId).populate({path: 'screenshots', options: { sort: { time : -1 } }});
+        const app = await App.findById(appId)
+            .limit(limit)
+            .populate({path: 'screenshots', options: { sort: { time : -1 }, limit: limit}});
+
+        if (app) {
+            const baseUrl = config.get('baseUrl');
+            app.screenshots
+                .map((screenShot) =>
+                    (screenShot.img = `${baseUrl}/assets/screenshots/${app.name}/${screenShot.img}`));
+        }
 
         resp.status(200).json({data: app})
     } catch (e) {

@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useHttp} from "../../hooks/http.hook";
 
 export const AppViewPage = () => {
     let {appId} = useParams();
-    const {loading, request} = useHttp();
+    const {request} = useHttp();
     const [app, setApp] = useState({screenshots: []});
 
     const getApp = useCallback(async () => {
@@ -29,14 +29,12 @@ export const AppViewPage = () => {
             </div>
             <div className="center-align">
                 {app.screenshots.map((screenshot, i) => {
-                    const imgLink = `http://localhost:3333/assets/screenshots/${app.name}/${screenshot.img}`;
-
                     return (
                         <div className="row" key={i}>
                             <div className="col s12">
                                 <div className="card">
                                     <div className="card-image">
-                                        <Link to={imgLink} target="_blank"><img src={imgLink} /></Link>
+                                        <a href={screenshot.img} target="_blank"><img src={screenshot.img} /></a>
                                             <span className="card-title">Card Title</span>
                                     </div>
                                     <div className="card-content">

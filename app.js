@@ -10,7 +10,7 @@ app.use(express.json({extended: true}));
 
 app.use('/api/apps', require('./routes/apps.routes'));
 
-app.use('/assets', express.static(__dirname + 'assets'));
+app.use('/assets', express.static(__dirname + '/assets'));
 
 if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'web', 'build')))
