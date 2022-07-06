@@ -1,0 +1,29 @@
+{
+  "name": "play-market-monitoring",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "config": "^3.3.7",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.4.2",
+    "node-schedule": "^2.1.0",
+    "pageres": "^6.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.2",
+    "nodemon": "^2.0.18",
+    "cross-env": "^7.0.3"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
+    "server": "nodemon app.js",
+    "web": "npm run start --prefix web",
+    "web:install": "npm install --prefix web",
+    "web:build": "npm run build --prefix web",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run web\""
+  },
+  "author": "",
+  "license": "ISC"
+}
