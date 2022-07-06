@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = config.get('port') || 3333;
-const SCREENSHOT_TIMER = config.get('screenShotTimer') || '*/5 * * * *';
+const SCREENSHOT_TIMER = config.get('screenShotTimer') || '*/1 * * * *';
 
 async function start() {
     try {

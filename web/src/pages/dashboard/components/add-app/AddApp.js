@@ -32,7 +32,7 @@ export const AddApp = ({onAdd}) => {
                     <input id="url" type="text" name="url" className="validate" onChange={changeEventHandler}/>
                         <label htmlFor="url">Google play link</label>
                 </div>
-                <button className="btn waves-effect waves-light" name="action" onClick={addNewAppHandler} disabled={loading}>Submit</button>
+                <button className="btn waves-effect waves-light" name="action" onClick={addNewAppHandler} disabled={loading}>Add</button>
             </div>
         </div>
     )

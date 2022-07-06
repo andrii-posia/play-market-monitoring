@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {AddApp} from "./components/add-app/AddApp";
 import {AppListItem} from "./components/app-list-item/AppListItem";
-import {useParams} from "react-router-dom";
 import {useHttp} from "../../hooks/http.hook";
 
 export const DashboardPage = () => {

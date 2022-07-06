@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const {check, validationResult} = require('express-validator');
 const App = require('../models/App');
+const {makeScreenshot} = require('../services/screenshot.service');
 const config = require('config');
 const router = Router();
 
@@ -22,6 +23,8 @@ router.post(
         const app = new App({url, name: appName, start_time: new Date()});
 
         await app.save();
+
+        makeScreenshot(app);
 
         resp.status(200).json({message: 'App was added'});
     } catch (e) {
