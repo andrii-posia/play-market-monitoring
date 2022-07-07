@@ -20,7 +20,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node app.js",
     "server": "nodemon app.js",
-    "all:install": "npm run install && npm run web:install",
+    "all:install": "npm install && npm run web:install",
     "web": "npm run start --prefix web",
     "web:install": "npm install --prefix web",
     "web:build": "npm run build --prefix web",
