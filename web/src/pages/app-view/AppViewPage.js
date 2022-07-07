@@ -9,8 +9,9 @@ export const AppViewPage = () => {
 
     const getApp = useCallback(async () => {
         try {
-            const data = await request(`/api/apps/${appId}`, 'GET');
-            setApp(data.data);
+            const resp = await request(`/api/apps/${appId}`, 'GET');
+
+            setApp(resp.data);
         } catch (e) {}
     }, [appId, request]);
 
@@ -34,10 +35,10 @@ export const AppViewPage = () => {
                             <div className="col s12">
                                 <div className="card">
                                     <div className="card-content">
-                                        <p>Screenshot time: {screenshot.time}</p>
+                                        <p>Screenshot time: {screenshot.created_at}</p>
                                     </div>
                                     <div className="card-image">
-                                        <a href={screenshot.img} target="_blank"><img src={screenshot.img} /></a>
+                                        <a href={screenshot.img_path} target="_blank"><img src={screenshot.img_path} /></a>
                                             <span className="card-title">Card Title</span>
                                     </div>
                                 </div>

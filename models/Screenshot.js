@@ -1,12 +1,8 @@
 const {Schema, model} = require('mongoose');
 
 const schema = new Schema({
-    img: {type: String},
-    time: {type: Date, default: new Date()},
-    app: {
-        type: Schema.Types.ObjectId,
-        ref: 'App'
-    }
-})
+    img_path: {type: String},
+    created_at: {type: Date, default: new Date()}
+});
 
 module.exports = model('Screenshot', schema);

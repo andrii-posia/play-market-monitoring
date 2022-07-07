@@ -1,14 +1,21 @@
 const express = require('express');
-const path = require('path');
-const config = require('config');
+const compression = require('compression');
 const mongoose = require('mongoose');
+const config = require('config');
+const path = require('path');
 const scheduleScreenshots = require('./schedule/screenshots.schedule');
+const errorRespondHandler = require('./helpers/errorhandler.helper');
+
+const PORT = config.get('port') || 3333;
+const SCREENSHOT_TIMER = config.get('screenShotTimer') || '*/1 * * * *';
 
 const app = express();
 
 app.use(express.json({extended: true}));
+app.use(compression({level: 3}));
 
 app.use('/api/apps', require('./routes/apps.routes'));
+app.use(errorRespondHandler);
 
 app.use('/assets', express.static(__dirname + '/assets'));
 
@@ -19,9 +26,6 @@ if (process.env.NODE_ENV === 'production') {
         resp.sendFile(path.resolve(__dirname, 'web', 'build', 'index.html'))
     })
 }
-
-const PORT = config.get('port') || 3333;
-const SCREENSHOT_TIMER = config.get('screenShotTimer') || '*/1 * * * *';
 
 async function start() {
     try {
@@ -35,8 +39,7 @@ async function start() {
 
         app.listen(PORT, () => console.log(`Started on port: ${PORT}...`))
     } catch (e) {
-        console.log(e.messages);
-        console.log(e);
+        console.error(e);
         process.exit(1);
     }
 }
